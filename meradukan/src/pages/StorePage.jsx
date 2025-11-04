@@ -79,7 +79,7 @@ const StorePage = () => {
   const { data: store, isLoading: storeLoading, error: storeError } = useQuery({
     queryKey: ['store', storeName],
     queryFn: async () => {
-      const response = await axios.get(`http://localhost:5000/api/store/name/${storeName}`);
+      const response = await axios.get(`${import.meta.env.VITE_API_URL}/api/store/name/${storeName}`);
       return response?.data?.data;
     },
     retry: 2,
@@ -94,7 +94,7 @@ const StorePage = () => {
   } = useQuery({
     queryKey: ['products', storeName, currentPage, searchTerm, selectedCategory, sortBy, mobileId],
     queryFn: async () => {
-      const response = await axios.get(`http://localhost:5000/api/store/${storeName}/products`, {
+      const response = await axios.get(`${import.meta.env.VITE_API_URL}/api/store/${storeName}/products`, {
         params: {
           page: currentPage,
           limit: pageSize,
@@ -113,7 +113,7 @@ const StorePage = () => {
   // Like mutation
   const likeMutation = useMutation({
     mutationFn: (productId) => 
-      axios.post(`http://localhost:5000/api/store/products/${productId}/like`, { mobileId }),
+      axios.post(`${import.meta.env.VITE_API_URL}/api/store/products/${productId}/like`, { mobileId }),
     onSuccess: (_, productId) => {
       queryClient.setQueryData(
         ['products', storeName, currentPage, searchTerm, selectedCategory, sortBy, mobileId],
@@ -1035,7 +1035,7 @@ const PremiumProductCard = ({ product, mobileId, onAddToCart, onToggleLike, onQu
           <div className="relative overflow-hidden h-60">
             <Image
               alt={product.name}
-              src={"http://localhost:5000" + primaryImage?.url || '/default-product.png'}
+              src={import.meta.env.VITE_API_URL+ primaryImage?.url || '/default-product.png'}
               className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
               preview={false}
               fallback="https://via.placeholder.com/300x200?text=No+Image"
@@ -1345,7 +1345,7 @@ const QuickView = ({ product, onAddToCart }) => {
       <Row gutter={[24, 24]}>
         <Col xs={24} md={12}>
           <Image
-            src={  "http://localhost:5000" +      primaryImage?.url || '/default-product.png'}
+            src={  import.meta.env.VITE_API_URL +      primaryImage?.url || '/default-product.png'}
             alt={product.name}
             className="w-full h-80 object-cover rounded-lg"
             preview={{

@@ -23,7 +23,7 @@ const LoginPage = () => {
 
   const createSellerMutation = useMutation({
     mutationFn: async (email) => {
-      const response = await axios.get(`http://localhost:5000/api/auth/auto-create-seller?email=${email}`);
+      const response = await axios.get(`${import.meta.env.VITE_API_URL}/api/auth/auto-create-seller?email=${email}`);
       return response.data;
     },
     onSuccess: (data) => {
@@ -43,7 +43,7 @@ const LoginPage = () => {
 
   const loginMutation = useMutation({
     mutationFn: async (credentials) => {
-      const response = await axios.post('http://localhost:5000/api/auth/login', credentials);
+      const response = await axios.post(`${import.meta.env.VITE_API_URL}/api/auth/login`, credentials);
       return response.data;
     },
     onSuccess: (data) => {

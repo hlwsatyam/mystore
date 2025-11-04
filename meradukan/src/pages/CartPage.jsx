@@ -479,7 +479,7 @@ const PremiumStoreCartSection = ({ storeCart, onUpdateQuantity, onRemoveItem, on
                       console.log(item)
                     }
                     <Image
-                      src={ "http://localhost:5000"+   item.images?.[0]?.url || '/default-product.png'}
+                      src={ import.meta.env.VITE_API_URL +   item.images?.[0]?.url || '/default-product.png'}
                       alt={item.name}
                       className="!w-24 !h-24 !rounded-xl !object-cover !shadow-md"
                       preview={false}
@@ -924,7 +924,7 @@ const PremiumCheckoutForm = ({ storeCart, userLocation, form, onFinish, onCancel
                 {items.map((item, index) => (
                   <div key={index} className="flex items-center gap-3 p-2 hover:bg-gray-50 rounded">
                     <img 
-                      src={ "http://localhost:5000"+  item.images?.[0]?.url || '/default-product.png'} 
+                      src={ import.meta.env.VITE_API_URL+  item.images?.[0]?.url || '/default-product.png'} 
                       alt={item.name}
                       className="w-12 h-12 rounded object-cover"
                     />

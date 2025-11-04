@@ -6,12 +6,13 @@ import path from 'path';
 import { fileURLToPath } from 'url';
 import morgan from 'morgan';
 // Routes
+dotenv.config();
 import authRoutes from './routes/auth.js';
 import storeRoutes from './routes/store.js';
 import productRoutes from './routes/products.js';
 import uploadRoute from "./routes/uploadRoute.js";
+ 
 
-dotenv.config();
 
 const app = express();
 

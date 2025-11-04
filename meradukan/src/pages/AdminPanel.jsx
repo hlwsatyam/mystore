@@ -70,7 +70,7 @@ const { TextArea } = Input;
 const { TabPane } = Tabs;
 
 // API Base URL
-const API_BASE_URL = 'http://localhost:5000/api';
+const API_BASE_URL =import.meta.env.VITE_API_URL 
 
 const AdminPanel = () => {
   const [activeTab, setActiveTab] = useState('1');
@@ -513,7 +513,7 @@ const AdminPanel = () => {
     try {
       setUploadLoading(true);
       const res = await axios.post(
-        `${import.meta.env.VITE_API_URL || "http://localhost:5000"}/api/upload`,
+        `${import.meta.env.VITE_API_URL  ,
         formData,
         { headers: { "Content-Type": "multipart/form-data" } }
       );
@@ -1022,7 +1022,7 @@ console.log( storeData)
       field === "banner" ? setLoadingBanner(true) : setLoadingLogo(true);
 
       const res = await axios.post(
-        `${import.meta.env.VITE_API_URL || "http://localhost:5000"}/api/upload`,
+        `${import.meta.env.VITE_API_URL}/api/upload`,
         formData,
         { headers: { "Content-Type": "multipart/form-data" } }
       );
