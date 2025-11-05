@@ -47,6 +47,7 @@ const LoginPage = () => {
       return response.data;
     },
     onSuccess: (data) => {
+      console.log(data)
       localStorage.setItem('token', data.data.token);
       localStorage.setItem('user', JSON.stringify(data.data.user));
       localStorage.setItem('store', JSON.stringify(data.data.store));

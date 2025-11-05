@@ -30,7 +30,9 @@ import {
   CompassOutlined,
   SafetyCertificateOutlined,
   CheckCircleOutlined,
-  CloseCircleOutlined
+  CloseCircleOutlined,
+  ExclamationCircleOutlined,
+  SearchOutlined
 } from '@ant-design/icons';
 import { 
   Skeleton, 
@@ -58,7 +60,8 @@ import {
   Drawer,
   Badge,
   Alert,
-  Spin
+  Spin,
+  Popconfirm
 } from 'antd';
 import { useMutation, useQuery } from '@tanstack/react-query';
 import axios from 'axios';
@@ -70,7 +73,7 @@ const { TextArea } = Input;
 const { TabPane } = Tabs;
 
 // API Base URL
-const API_BASE_URL =import.meta.env.VITE_API_URL 
+const API_BASE_URL =import.meta.env.VITE_API_URL +"/api"
 
 const AdminPanel = () => {
   const [activeTab, setActiveTab] = useState('1');
@@ -113,7 +116,7 @@ const AdminPanel = () => {
     },
     enabled: !!localStorage.getItem('token')
   });
-
+console.log(storeData)
   // Fetch products
   const { data: productsData, refetch: productRefetch, isLoading: productsLoading } = useQuery({
     queryKey: ['products'],
@@ -513,7 +516,7 @@ const AdminPanel = () => {
     try {
       setUploadLoading(true);
       const res = await axios.post(
-        `${import.meta.env.VITE_API_URL  ,
+        `${import.meta.env.VITE_API_URL}+"/api"`  ,
         formData,
         { headers: { "Content-Type": "multipart/form-data" } }
       );
@@ -698,6 +701,25 @@ const AdminPanel = () => {
               </div>
               <div className="min-w-0 flex-1">
                 <h1 className="text-lg font-bold text-gray-800 truncate">Seller Dashboard</h1>
+                <p className="text-xs text-gray-600 truncate">{storeData?.mainShopNameFromAdmin}
+ 
+
+ 
+  {!storeData?.isSuperDeactivated ? (
+    <span className="text-xs font-medium px-2 py-1 rounded-full bg-green-100 text-green-700">
+      Visible
+    </span>
+  ) : (
+    <span className="text-xs font-medium px-2 py-1 rounded-full bg-red-100 text-red-700">
+      Not Visible
+    </span>
+  )}
+
+
+
+
+
+                </p>
                 <p className="text-xs text-gray-600 truncate">{user.email}</p>
               </div>
             </div>
@@ -713,7 +735,9 @@ const AdminPanel = () => {
                   checkedChildren="Active"
                   unCheckedChildren="Inactive"
                 />
+             
               </div>
+           
               <Button 
                 icon={<LogoutOutlined />}
                 onClick={handleLogout}
@@ -722,6 +746,27 @@ const AdminPanel = () => {
               >
                 {isMobile ? '' : 'Logout'}
               </Button>
+             <Button
+    icon={<ShareAltOutlined />}
+    onClick={async () => {
+      const shareUrl = `${window.location.origin}/${storeData.mainShopNameFromAdmin}`;
+      try {
+        if (navigator.share) {
+          await navigator.share({
+            title: storeData.mainShopNameFromAdmin,
+            url: shareUrl,
+          });
+        } else {
+          await navigator.clipboard.writeText(shareUrl);
+          message.success("Link copied!");
+        }
+      } catch (err) {
+        message.error("Share failed");
+      }
+    }}
+    className="border-blue-500 text-blue-500 hover:bg-blue-50"
+    size={isMobile ? "small" : "middle"}
+  />
             </div>
           </div>
 
@@ -1354,6 +1399,10 @@ console.log( storeData)
 };
 
 // Products Tab Component
+
+
+
+
 const ProductsTab = ({ 
   storeData, 
   productsData, 
@@ -1361,8 +1410,7 @@ const ProductsTab = ({
   onAddCategory, 
   onAddProduct, 
   onDeleteCategory,
-  onToggleProductStatus, 
-  onEditProduct,
+   
   productColumns,
   isMobile,
   deleteCategoryLoading
@@ -1461,6 +1509,60 @@ const ProductsTab = ({
     </div>
   );
 };
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 // QR Code Tab Component
 const QRCodeTab = ({ storeData,   onUploadQR, uploadLoading }) => {

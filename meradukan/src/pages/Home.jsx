@@ -844,19 +844,19 @@ const HomePage = () => {
     { 
       icon: <MailOutlined className="text-2xl" />, 
       label: 'Email Us', 
-      value: 'support@meradukan.com',
+      value: 'support@meradukan.stote',
       description: 'Send us an email anytime'
     },
     { 
       icon: <PhoneOutlined className="text-2xl" />, 
       label: 'Call Us', 
-      value: '+91 98765 43210',
+      value: '+91 82956 60693',
       description: 'We\'re available 24/7'
     },
     { 
       icon: <WhatsAppOutlined className="text-2xl" />, 
       label: 'WhatsApp', 
-      value: '+91 98765 43210',
+      value: '+91 82956 60693',
       description: 'Quick chat support'
     },
     { 
@@ -955,7 +955,7 @@ const HomePage = () => {
                   
                   <button
                     type="submit"
-                    className="w-full bg-gradient-to-r from-green-500 to-green-600 text-white py-4 rounded-xl font-bold text-lg hover:from-green-600 hover:to-green-700 transition-all duration-300 shadow-lg hover:shadow-xl transform hover:scale-105"
+                    className="w-full !bg-gradient-to-r !from-green-500 !to-green-600 text-white py-4 rounded-xl font-bold text-lg hover:from-green-600 hover:to-green-700 transition-all duration-300 shadow-lg hover:shadow-xl transform hover:scale-105"
                   >
                     Send Message
                   </button>
@@ -975,10 +975,10 @@ const HomePage = () => {
               Join thousands of successful businesses using MeraDukan. Start your digital journey today.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
-              <button className="px-8 py-4 bg-white text-green-600 rounded-xl font-bold text-lg hover:bg-gray-100 transition-colors shadow-lg">
+              <button className="px-8 py-4 bg-white !text-green-600 rounded-xl font-bold text-lg hover:bg-gray-100 transition-colors shadow-lg">
                 Start Free Trial
               </button>
-              <button className="px-8 py-4 bg-transparent border-2 border-white text-white rounded-xl font-bold text-lg hover:bg-white hover:text-green-600 transition-colors">
+              <button className="px-8 py-4 bg-transparent border-2 border-white !text-black rounded-xl font-bold text-lg hover:bg-white hover:text-green-600 transition-colors">
                 Schedule Demo
               </button>
             </div>

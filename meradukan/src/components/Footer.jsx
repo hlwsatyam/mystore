@@ -105,7 +105,7 @@ const Footer = ({isWhatsappShow=true}) => {
                   placeholder="Enter your email address"
                   className="flex-1 px-4 py-3 rounded-xl border-0 !focus:ring-2 focus:ring-white focus:outline-none !text-gray-800"
                 />
-                <button className="px-6 py-3 bg-white text-green-600 rounded-xl font-semibold hover:bg-gray-100 transition-colors shadow-lg">
+                <button className="px-6 py-3 bg-black text-green-600 rounded-xl font-semibold hover:bg-gray-100 transition-colors shadow-lg">
                   Subscribe
                 </button>
               </div>
@@ -326,7 +326,7 @@ const Footer = ({isWhatsappShow=true}) => {
       {/* Floating WhatsApp Button */}
      {isWhatsappShow && <div className="fixed bottom-6 right-6 z-50">
         <a
-          href="https://wa.me/919876543210"
+          href="https://wa.me/918295660693"
           target="_blank"
           rel="noopener noreferrer"
           className="w-16 h-16 bg-green-500 rounded-full flex items-center justify-center text-white shadow-2xl hover:scale-110 transform transition-all duration-300 animate-bounce"

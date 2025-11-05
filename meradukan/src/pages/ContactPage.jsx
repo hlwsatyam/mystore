@@ -42,7 +42,7 @@ const ContactPage = () => {
       icon: <PhoneOutlined className="text-3xl" />,
       title: 'Call Us',
       description: 'Speak directly with our team',
-      details: '+91 98765 43210',
+      details: '+91 82956 60693',
       action: 'Call Now',
       color: 'from-green-500 to-emerald-500',
       type: 'phone'
@@ -51,7 +51,7 @@ const ContactPage = () => {
       icon: <WhatsAppOutlined className="text-3xl" />,
       title: 'WhatsApp',
       description: 'Quick chat support',
-      details: '+91 98765 43210',
+      details: '+91 82956 60693',
       action: 'Start Chat',
       color: 'from-green-400 to-green-600',
       type: 'whatsapp'
@@ -60,7 +60,7 @@ const ContactPage = () => {
       icon: <MailOutlined className="text-3xl" />,
       title: 'Email Us',
       description: 'Send us your queries',
-      details: 'support@meradukan.com',
+      details: 'support@meradukan.store',
       action: 'Send Email',
       color: 'from-blue-500 to-cyan-500',
       type: 'email'
@@ -109,29 +109,29 @@ const ContactPage = () => {
     {
       name: 'Sales',
       description: 'Get pricing and plan information',
-      email: 'sales@meradukan.com',
-      phone: '+91 98765 43211',
+      email: 'sales@meradukan.stote',
+      phone: '+91 82956 60693',
       icon: '💰'
     },
     {
       name: 'Support',
       description: 'Technical and account support',
-      email: 'support@meradukan.com',
+      email: 'support@meradukan.stote',
       phone: '+91 98765 43212',
       icon: '🔧'
     },
     {
       name: 'Partnerships',
       description: 'Business collaborations',
-      email: 'partners@meradukan.com',
-      phone: '+91 98765 43213',
+      email: 'partners@meradukan.stote',
+      phone: '+91 82956 60694',
       icon: '🤝'
     },
     {
       name: 'Careers',
       description: 'Join our team',
-      email: 'careers@meradukan.com',
-      phone: '+91 98765 43214',
+      email: 'careers@meradukan.stote',
+      phone: '+91 82956 60693',
       icon: '👥'
     }
   ];
