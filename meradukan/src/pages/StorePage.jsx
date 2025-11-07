@@ -35,7 +35,8 @@ import {
   Divider,
   Typography,
   Image,
-  Skeleton
+  Skeleton,
+  Popover
 } from 'antd';
 import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
 import axios from 'axios';
@@ -442,124 +443,13 @@ const StorePage = () => {
   );
 };
 
-// Premium Store Header Component
-// const PremiumStoreHeader = ({ store, userLocation, onEnableLocation }) => (
-//   <motion.div
-//     initial={{ opacity: 0, y: -20 }}
-//     animate={{ opacity: 1, y: 0 }}
-//     transition={{ duration: 0.6 }}
-//     className="relative bg-gradient-to-r from-blue-600 to-purple-700 shadow-2xl"
-//   >
-//     {/* Banner */}
-//     <div 
-//       className="h-80 !bg-cover bg-center relative overflow-hidden"
-//       style={{ backgroundImage: `url(${store.banner})` }}
-//     >
-//       <div className="absolute inset-0 bg-black bg-opacity-40"></div>
-//       <div className="absolute inset-0 bg-gradient-to-r from-blue-900/60 to-purple-900/40"></div>
-      
-//       <div className="absolute inset-0 flex items-center">
-//         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
-//           <div className="flex flex-col md:flex-row items-center gap-8">
-//             {/* Logo */}
-//             <motion.div
-//               initial={{ scale: 0 }}
-//               animate={{ scale: 1 }}
-//               transition={{ duration: 0.6, delay: 0.2 }}
-//               className="flex-shrink-0"
-//             >
-//               <img 
-//                 src={store.logo} 
-//                 alt={store.storeName}
-//                 className="w-28 h-28 md:w-36 md:h-36 rounded-2xl border-4 border-white/80 shadow-2xl object-cover backdrop-blur-sm"
-//               />
-//             </motion.div>
-            
-//             {/* Store Info */}
-//             <motion.div
-//               initial={{ opacity: 0, x: 20 }}
-//               animate={{ opacity: 1, x: 0 }}
-//               transition={{ duration: 0.6, delay: 0.4 }}
-//               className="text-white text-center md:text-left flex-1"
-//             >
-//               <Title level={1} className="!text-white !mb-3 !text-4xl md:!text-5xl font-bold">
-//                 {store.storeName}
-//               </Title>
-              
-//               <Paragraph className="text-xl opacity-95 mb-6 max-w-2xl leading-relaxed">
-//                 {store.description}
-//               </Paragraph>
-              
-//               <Space size="large" wrap className="mb-4">
-//                 {/* Rating */}
-//                 <div className="flex items-center gap-3 bg-white/20 backdrop-blur-sm px-4 py-2 rounded-full">
-//                   <Rate 
-//                     disabled 
-//                     defaultValue={store.metadata.storeRating} 
-//                     className="!text-yellow-400 text-sm" 
-//                   />
-//                   <Text className="!text-white font-semibold">
-//                     ({store.metadata.storeRating})
-//                   </Text>
-//                 </div>
-                
-//                 {/* Stats */}
-//                 <Space size="middle">
-//                   <Badge 
-//                     count={store.metadata.totalProducts} 
-//                     showZero 
-//                     color="blue"
-//                     className="bg-white/20 backdrop-blur-sm px-3 py-1 rounded-full"
-//                   >
-//                     <Text className="!text-white">Products</Text>
-//                   </Badge>
-//                   <Badge 
-//                     count={store.metadata.totalOrders} 
-//                     showZero 
-//                     color="green"
-//                     className="bg-white/20 backdrop-blur-sm px-3 py-1 rounded-full"
-//                   >
-//                     <Text className="!text-white">Orders</Text>
-//                   </Badge>
-//                 </Space>
-//               </Space>
-
-//               {/* Location Section */}
-//               <div className="flex items-center gap-4">
-//                 {userLocation ? (
-//                   <Tag   color="success" className="!text-[15px] !py-1.5">
-//                     Location Available
-//                   </Tag>
-//                 ) : (
-//                   <div className="flex items-center gap-4">
-//                     <Tag icon={<MapPin />} color="warning" className="!text-base !py-1.5">
-//                       Location Access Required
-//                     </Tag>
-//                     <Button 
-//                       type="primary"
-//                       ghost
-//                       size="small"
-//                       onClick={onEnableLocation}
-//                       icon={<MapPin size={14} />}
-//                     >
-//                       Enable Location
-//                     </Button>
-//                   </div>
-//                 )}
-//               </div>
-//             </motion.div>
-//           </div>
-//         </div>
-//       </div>
-//     </div>
-//   </motion.div>
-// );
+ 
 
 
 const PremiumStoreHeader = ({ store, userLocation, onEnableLocation }) => {
   const bannerUrl = store.banner || 'https://images.unsplash.com/photo-1607082350899-7e105aa886ae?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80';
   
-  console.log('Banner URL:', bannerUrl);
+ 
 
   return (
     <div style={{
@@ -666,7 +556,7 @@ const PremiumStoreHeader = ({ store, userLocation, onEnableLocation }) => {
                 textAlign: 'left'
               }}>
                 {/* Store Name */}
-                <h1 style={{
+                {/* <h1 style={{
                   fontSize: '48px',
                   fontWeight: 'bold',
                   margin: '0 0 12px 0',
@@ -674,10 +564,40 @@ const PremiumStoreHeader = ({ store, userLocation, onEnableLocation }) => {
                   lineHeight: 1.2
                 }}>
                   {store.storeName}
-                </h1>
+                </h1> */}
                 
+
+
+<Popover
+      content={<span style={{ fontSize: "18px", fontWeight: 600 }}>{store.storeName}</span>}
+      title="Full Store Name"
+      trigger="click"
+    >
+      <h1
+        style={{
+          fontSize: "30px",
+          fontWeight: "bold",
+          margin: "0 0 12px 0",
+          color: "white",
+          lineHeight: 1.2,
+          whiteSpace: "nowrap",
+          overflow: "hidden",
+          textOverflow: "ellipsis",
+          cursor: "pointer",
+          maxWidth: "90%",  
+        }}
+      >
+        {store.storeName}
+      </h1>
+    </Popover>
+
+
+
+
+
+
                 {/* Store Description */}
-                <p style={{
+                {/* <p style={{
                   fontSize: '20px',
                   opacity: 0.95,
                   margin: '0 0 24px 0',
@@ -685,8 +605,51 @@ const PremiumStoreHeader = ({ store, userLocation, onEnableLocation }) => {
                   lineHeight: 1.6
                 }}>
                   {store.description}
-                </p>
+                </p> */}
                 
+
+
+
+   <Popover
+      content={
+        <div
+          style={{
+            maxWidth: "400px",
+            fontSize: "16px",
+            lineHeight: 1.6,
+            wordBreak: "break-word",
+          }}
+        >
+          {store.description}
+        </div>
+      }
+      title="Full Description"
+      trigger="click"
+    >
+      <p
+        style={{
+          fontSize: "20px",
+          opacity: 0.95,
+          margin: "0 0 24px 0",
+          maxWidth: "640px",
+          lineHeight: 1.6,
+          display: "-webkit-box",
+          WebkitLineClamp: 2, // show max 2 lines
+          WebkitBoxOrient: "vertical",
+          overflow: "hidden",
+          textOverflow: "ellipsis",
+          cursor: "pointer",
+        }}
+      >
+        {store.description}
+      </p>
+    </Popover>
+
+
+
+
+
+
                 {/* Stats Row */}
                 <div style={{
                   display: 'flex',
@@ -812,40 +775,15 @@ const PremiumStoreHeader = ({ store, userLocation, onEnableLocation }) => {
                         gap: '8px',
                         backgroundColor: '#f59e0b',
                         color: 'white',
-                        padding: '6px 12px',
+                        padding: '6px 6px',
                         borderRadius: '6px',
-                        fontSize: '14px',
+                        fontSize: '11px',
                         fontWeight: 500
                       }}>
                         <span>📍</span>
-                        <span>Location Access Required</span>
+                        <span>Location Required</span>
                       </div>
-                      <button
-                        onClick={onEnableLocation}
-                        style={{
-                          display: 'flex',
-                          alignItems: 'center',
-                          gap: '8px',
-                          backgroundColor: 'transparent',
-                          color: 'white',
-                          border: '1px solid white',
-                          padding: '6px 12px',
-                          borderRadius: '6px',
-                          fontSize: '14px',
-                          fontWeight: 500,
-                          cursor: 'pointer',
-                          transition: 'all 0.2s'
-                        }}
-                        onMouseOver={(e) => {
-                          e.target.style.backgroundColor = 'rgba(255, 255, 255, 0.1)';
-                        }}
-                        onMouseOut={(e) => {
-                          e.target.style.backgroundColor = 'transparent';
-                        }}
-                      >
-                        <span>📍</span>
-                        <span>Enable Location</span>
-                      </button>
+                     
                     </div>
                   )}
                 </div>
